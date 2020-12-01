@@ -1,5 +1,7 @@
 package me.banana_is_trash.punchsimulator;
 
+import me.banana_is_trash.punchsimulator.Commands.Punch;
+import me.banana_is_trash.punchsimulator.Commands.TabComplete.PunchTabCompelte;
 import me.banana_is_trash.punchsimulator.Files.Data;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -40,6 +42,10 @@ public final class PunchSimulator extends JavaPlugin implements Listener {
 
         // Event Setup
         Bukkit.getPluginManager().registerEvents(this, this);
+
+        // Command Setup
+        getCommand("punch").setExecutor(new Punch());
+        getCommand("punch").setTabCompleter(new PunchTabCompelte());
 
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " Plugin Loaded" + highlight + "!"));
     }
