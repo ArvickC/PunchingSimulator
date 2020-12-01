@@ -1,0 +1,13 @@
+# This is all the information the plugin will use to message people
+Message:
+  # The Prefix of the plugin
+  # Format of the message sent: {Prefix} <message>
+  # Set to '' for no prefix
+  Prefix: '&7[&cPunch Sim&7]'
+
+  # These are the colors used for the plugin
+  Color:
+    # The normal color of text
+    Normal: 'e'
+    # Highlighted color of text
+    Highlight: 'c'
