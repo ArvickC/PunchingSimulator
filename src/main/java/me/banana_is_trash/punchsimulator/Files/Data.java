@@ -13,7 +13,7 @@ public class Data {
 
     //Finds or generates the custom config file
     public static void setup(){
-        file = new File(Bukkit.getServer().getPluginManager().getPlugin("CustomConfigPlugin").getDataFolder(), "customconfig.yml");
+        file = new File(Bukkit.getServer().getPluginManager().getPlugin("PunchingSimulator").getDataFolder(), "data.yml");
 
         if (!file.exists()){
             try{
