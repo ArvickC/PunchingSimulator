@@ -22,8 +22,6 @@ public final class PunchSimulator extends JavaPlugin implements Listener {
     public static String highlight;
     public static String prefix;
 
-    private HashMap<UUID, Integer> strengthPoints = new HashMap<>();
-
     @Override
     public void onEnable() {
         // Config Setup
@@ -37,7 +35,6 @@ public final class PunchSimulator extends JavaPlugin implements Listener {
 
         // Data Setup
         Data.setup();
-        Data.get().addDefault("StrengthPoints", strengthPoints);
         Data.get().options().copyDefaults(true);
         Data.save();
 
@@ -49,6 +46,10 @@ public final class PunchSimulator extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
+        // Save
+        Data.save();
+
+        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " Saved Files, see you next time" + highlight + "!"));
     }
 
     @EventHandler
@@ -62,19 +63,18 @@ public final class PunchSimulator extends JavaPlugin implements Listener {
                 Player player = e.getPlayer();
                 UUID playerID = e.getPlayer().getUniqueId();
 
-                HashMap<UUID, Integer> points = (HashMap<UUID, Integer>) Data.get().get("StrengthPoints");
-
                 // Checks if Points aren't null
-                if (points.get(playerID) != 0 || points.get(playerID) != null) {
+                if (Data.get().getInt(playerID.toString()) != 0 || Data.get().contains(playerID.toString())) {
                     // Add Point
-                    points.replace(playerID, points.get(playerID) + 1);
+                    Data.get().set(playerID.toString(), Data.get().getInt(playerID.toString()) + 1);
+                    Data.save();
 
                     // Checks if +50
-                    if (points.get(playerID) % 50 == 0) {
+                    if (Data.get().getInt(playerID.toString())%50 == 0) {
                         // Checks LevelUp
-                        if (points.get(playerID) % 100 == 0) {
+                        if (Data.get().getInt(playerID.toString())%100 == 0) {
                             // Var Setup
-                            Integer playerPoints = points.get(playerID);
+                            Integer playerPoints = Data.get().getInt(playerID.toString());
                             Integer playerLevel = playerPoints / 100;
 
                             // Broadcast
@@ -84,17 +84,12 @@ public final class PunchSimulator extends JavaPlugin implements Listener {
                                 }
                             }
                         }
-                        // Updates DATA
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " You now have &" + highlight + points.get(playerID).toString() + normal + " points" + highlight + "!"));
-                        Data.get().set("StrengthPoints", points);
-                        Data.save();
-                        Data.reload();
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " You now have &" + highlight + Data.get().getInt(playerID.toString()) + normal + " points" + highlight + "!"));
                         return;
                     }
                 }
                 // Creates Section for player
-                points.put(playerID, 1);
-                Data.get().set("StrengthPoints", points);
+                Data.get().set(playerID.toString(), 1);
                 Data.save();
                 Data.reload();
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " You have started your " + highlight + "journey" + normal + " in " + highlight + "Punching Simulator" + normal + "!"));
@@ -114,19 +109,18 @@ public final class PunchSimulator extends JavaPlugin implements Listener {
                 Player player = (Player) e.getDamager();
                 UUID playerID = e.getDamager().getUniqueId();
 
-                HashMap<UUID, Integer> points = (HashMap<UUID, Integer>) Data.get().get("StrengthPoints");
-
                 // Checks if Points aren't null
-                if (points.get(playerID) != 0 || points.get(playerID) != null) {
+                if (Data.get().getInt(playerID.toString()) != 0 || Data.get().contains(playerID.toString())) {
                     // Add Point
-                    points.replace(playerID, points.get(playerID) + 1);
+                    Data.get().set(playerID.toString(), Data.get().getInt(playerID.toString()) + 1);
+                    Data.save();
 
                     // Checks if +50
-                    if (points.get(playerID) % 50 == 0) {
+                    if (Data.get().getInt(playerID.toString()) % 50 == 0) {
                         // Checks LevelUp
-                        if (points.get(playerID) % 100 == 0) {
+                        if (Data.get().getInt(playerID.toString()) % 100 == 0) {
                             // Var Setup
-                            Integer playerPoints = points.get(playerID);
+                            Integer playerPoints = Data.get().getInt(playerID.toString());
                             Integer playerLevel = playerPoints / 100;
 
                             // Broadcast
@@ -136,17 +130,12 @@ public final class PunchSimulator extends JavaPlugin implements Listener {
                                 }
                             }
                         }
-                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " You now have &" + highlight + points.get(playerID).toString() + normal + " points" + highlight + "!"));
+                        player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " You now have &" + highlight + Data.get().getInt(playerID.toString()) + normal + " points" + highlight + "!"));
+                        return;
                     }
-                    // Updates DATA
-                    Data.get().set("StrengthPoints", points);
-                    Data.save();
-                    Data.reload();
-                    return;
                 }
                 // Creates Section for player
-                points.put(playerID, 1);
-                Data.get().set("StrengthPoints", points);
+                Data.get().set(playerID.toString(), 1);
                 Data.save();
                 Data.reload();
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " You have started your " + highlight + "journey" + normal + " in " + highlight + "Punching Simulator" + normal + "!"));
