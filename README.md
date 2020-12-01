@@ -1,5 +1,6 @@
 # PunchingSimulator
 
+## To Do
 **Commands**:
 __Player__
 ```
@@ -33,3 +34,11 @@ __Pets__:
 ```
 Based on pet, increases strength or health
 ```
+
+## How to downlad (Unrelased Versions)
+
+To get to the un-relased page, click [here](https://github.com/ArvickC/PunchingSimulator/tree/master/target "Unreleased Versions!"). Here you will find some exports of the plugin, you can download the latest one by checking the version of the file, found at the end:
+
+**Example**: `PunchSimulator-1.0.1.1` This shows that the export is version `1.0.1.1`!
+
+If you have any questions, create an [issue](https://github.com/ArvickC/PunchingSimulator/issues/new)! Thank you :D
