@@ -1,4 +1,16 @@
 name: PunchSimulator
-version: 1.0.1.3
+version: 1.0.1.4
 main: me.banana_is_trash.punchsimulator.PunchSimulator
 api-version: 1.16
+load: STARTUP
+author: banana_is_trash
+depend: [Multiverse-Core, Vault, EssentialsX]
+commands:
+  punch:
+    description: The main command for the plugin
+    aliases: [p]
+    permission: punch.use
+permissions:
+  punch.use:
+    description: Allows you to use the plugin
+    default: true

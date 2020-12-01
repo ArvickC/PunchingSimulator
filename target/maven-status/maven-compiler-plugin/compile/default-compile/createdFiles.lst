@@ -1,3 +1,4 @@
 me\banana_is_trash\punchsimulator\PunchSimulator.class
+me\banana_is_trash\punchsimulator\Commands\TabComplete\PunchTabCompelte.class
 me\banana_is_trash\punchsimulator\Commands\Punch.class
 me\banana_is_trash\punchsimulator\Files\Data.class
