@@ -91,7 +91,6 @@ public final class PunchSimulator extends JavaPlugin implements Listener {
                         Data.reload();
                         return;
                     }
-                    return;
                 }
                 // Creates Section for player
                 points.put(playerID, 1);
@@ -137,21 +136,21 @@ public final class PunchSimulator extends JavaPlugin implements Listener {
                                 }
                             }
                         }
-                        // Updates DATA
-                        Data.get().set("StrengthPoints", points);
-                        Data.save();
-                        Data.reload();
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " You now have &" + highlight + points.get(playerID).toString() + normal + " points" + highlight + "!"));
-                        return;
                     }
-                    // Creates Section for player
-                    points.put(playerID, 1);
+                    // Updates DATA
                     Data.get().set("StrengthPoints", points);
                     Data.save();
                     Data.reload();
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " You have started your " + highlight + "journey" + normal + " in " + highlight + "Punching Simulator" + normal + "!"));
                     return;
                 }
+                // Creates Section for player
+                points.put(playerID, 1);
+                Data.get().set("StrengthPoints", points);
+                Data.save();
+                Data.reload();
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + normal + " You have started your " + highlight + "journey" + normal + " in " + highlight + "Punching Simulator" + normal + "!"));
+                return;
             }
         }
     }
